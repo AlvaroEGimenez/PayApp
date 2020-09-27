@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="text_dimen">16sp</dimen>
+    <dimen name="text_dimen_large">18sp</dimen>
+    <dimen name="image_layout_width">50dp</dimen>
+    <dimen name="image_layout_height">50dp</dimen>
+</resources>

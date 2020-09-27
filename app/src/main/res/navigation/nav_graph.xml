@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/main">
+
+    <fragment android:id="@+id/main"
+        android:name="com.example.geopagos.view.MainFragment"
+        android:label="Main"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_fragment_card"
+            app:destination="@+id/card_fragment"/>
+    </fragment>
+
+
+    <fragment android:id="@+id/card_fragment"
+        android:name="com.example.geopagos.view.CardFragment"
+        android:label="Cards"
+        tools:layout="@layout/fragment_card">
+        <action
+            android:id="@+id/action_card_fragment_to_bank_fragment2"
+            app:destination="@id/bank_fragment" />
+        <argument android:name="amount"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+
+    <fragment android:id="@+id/bank_fragment"
+        android:name="com.example.geopagos.view.BankFragment"
+        android:label="Bank"
+        tools:layout="@layout/fragment_bank">
+        <action
+            android:id="@+id/action_bank_fragment_to_resume_fragment"
+            app:destination="@id/resume_fragment" />
+        <argument android:name="id"
+            app:argType="string"
+            android:defaultValue=""/>
+    </fragment>
+
+    <fragment android:id="@+id/resume_fragment"
+        android:name="com.example.geopagos.view.ResumeFragment"
+        android:label="Resume"
+        tools:layout="@layout/fragment_resume">
+        <action
+            android:id="@+id/action_resume_fragment_to_checkout_fragment"
+            app:destination="@id/checkout_fragment" />
+        <argument android:name="cardIssuer"
+            app:argType="com.example.geopagos.model.CardIssuers"/>
+    </fragment>
+
+    <fragment android:id="@+id/checkout_fragment"
+        android:name="com.example.geopagos.view.CheckoutFragment"
+        tools:label="Checkout"
+        tools:layout="@layout/fragment_checkout"/>
+
+
+</navigation>

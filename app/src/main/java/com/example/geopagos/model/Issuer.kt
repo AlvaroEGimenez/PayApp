@@ -8,4 +8,6 @@ data class Issuer (
     @SerializedName("name") val name : String,
     @SerializedName("secure_thumbnail") val secure_thumbnail : String,
     @SerializedName("thumbnail") val thumbnail : String
-)
+){
+    constructor():this(0,"","","")
+}

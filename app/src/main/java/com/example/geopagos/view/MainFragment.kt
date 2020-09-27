@@ -29,13 +29,9 @@ import java.text.NumberFormat
  * create an instance of this fragment.
  */
 class MainFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
     private lateinit var etAmount : TextInputEditText
     private lateinit var btnNext : MaterialButton
-
 
 
     override fun onCreateView(

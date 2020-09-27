@@ -63,12 +63,7 @@ class BankFragment : Fragment() {
             tvCardName.text = card
         }
 
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.select_bank)
-
-        setHasOptionsMenu(true)
+        setupToolbar()
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
         cardsViewModel.getCardIsuuers(id)
@@ -76,6 +71,8 @@ class BankFragment : Fragment() {
 
         return view
     }
+
+
 
     private fun observeCardViewModel() {
         cardsViewModel.cards.observe(viewLifecycleOwner, Observer { list ->
@@ -103,10 +100,18 @@ class BankFragment : Fragment() {
 
         cardsViewModel.error.observe(viewLifecycleOwner, Observer {
             if (it) {
-                Log.e(TAG, "ocurrio un error")
+                Log.e(TAG, "Viewmodel error")
                 Toast.makeText(context, "ocurrio un error", Toast.LENGTH_SHORT).show()
             }
         })
+    }
+
+    private fun setupToolbar() {
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.title = getString(R.string.select_bank)
+        setHasOptionsMenu(true)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

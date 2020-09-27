@@ -48,8 +48,8 @@ class ResumeFragment : Fragment() {
         tvResumeAmount = view.findViewById(R.id.tv_resume_amount)
         tvResumeCard = view.findViewById(R.id.tv_resume_card)
         tvResumeBank = view.findViewById(R.id.tv_resume_bank)
-        var amount = ""
 
+        var amount = ""
         if (arguments != null) {
             cardIssuers = arguments?.getParcelable(BundleKeys.KEY_ISSUER)!!
             id = arguments?.getString(BundleKeys.KEY_ID).toString()

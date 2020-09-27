@@ -44,20 +44,23 @@ class CardFragment : Fragment() {
         if (arguments != null)
             amount = arguments?.getString(BundleKeys.KEY_AMOUNT).toString()
 
-        (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.title = "Monto $amount"
-        setHasOptionsMenu(true)
+        setupToolbar()
 
         paymentMethodViewModel = ViewModelProvider(this).get(PaymentMethodViewModel::class.java)
-
         paymentMethodViewModel.getPaymentMethod()
         observePaymentMethod()
 
 
 
         return view
+    }
+
+    private fun setupToolbar() {
+        (activity as AppCompatActivity).setSupportActionBar(toolbar)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
+        (activity as AppCompatActivity).supportActionBar?.title = "Monto $amount"
+        setHasOptionsMenu(true)
     }
 
     private fun observePaymentMethod() {

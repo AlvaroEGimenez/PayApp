@@ -1,4 +1,4 @@
-package com.example.geopagos.view
+package com.example.geopagos.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -29,6 +29,7 @@ import kotlinx.android.synthetic.main.fragment_bank.*
  * Use the [BankFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+
 private const val TAG = "BankFragment"
 
 class BankFragment : Fragment() {
@@ -38,8 +39,8 @@ class BankFragment : Fragment() {
     private lateinit var amount: String
     private lateinit var card: String
     private lateinit var toolbar: Toolbar
-    private lateinit var tvAmount : TextView
-    private lateinit var tvCardName : TextView
+    private lateinit var tvAmount: TextView
+    private lateinit var tvCardName: TextView
     private lateinit var recyclerView: RecyclerView
 
 

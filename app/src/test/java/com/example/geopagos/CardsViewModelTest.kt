@@ -1,6 +1,7 @@
 package com.example.geopagos
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.geopagos.api.ApiService
 import com.example.geopagos.model.CardIssuers
 import com.example.geopagos.viewmodel.CardsViewModel
 import io.reactivex.Scheduler

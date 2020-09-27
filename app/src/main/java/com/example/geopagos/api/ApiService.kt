@@ -1,6 +1,6 @@
-package com.example.geopagos
+package com.example.geopagos.api
 
-import com.example.geopagos.api.NetworkApiService
+import com.example.geopagos.BuildConfig
 import com.example.geopagos.di.DaggerApiComponent
 import com.example.geopagos.model.CardIssuers
 import com.example.geopagos.model.Installments

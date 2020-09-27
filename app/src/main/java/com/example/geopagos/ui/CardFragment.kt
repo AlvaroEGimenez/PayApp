@@ -1,4 +1,4 @@
-package com.example.geopagos.view
+package com.example.geopagos.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater

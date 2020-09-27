@@ -1,9 +1,8 @@
 package com.example.geopagos
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.example.geopagos.api.ApiService
 import com.example.geopagos.model.Installments
-import com.example.geopagos.model.Issuer
-import com.example.geopagos.model.PayerCosts
 import com.example.geopagos.viewmodel.InstallmentsViewModel
 import io.reactivex.Scheduler
 import io.reactivex.Single

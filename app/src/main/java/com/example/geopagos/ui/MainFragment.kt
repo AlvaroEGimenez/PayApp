@@ -1,4 +1,4 @@
-package com.example.geopagos.view
+package com.example.geopagos.ui
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,17 +8,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.example.geopagos.R
 import com.example.geopagos.utils.BundleKeys
-import com.example.geopagos.viewmodel.PaymentMethodViewModel
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import kotlinx.android.synthetic.main.fragment_main.*
 import java.text.NumberFormat
 
 

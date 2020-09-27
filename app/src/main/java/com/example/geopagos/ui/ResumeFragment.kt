@@ -1,4 +1,4 @@
-package com.example.geopagos.view
+package com.example.geopagos.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,7 +17,6 @@ import com.example.geopagos.adapter.InstallmentAdapter
 import com.example.geopagos.model.CardIssuers
 import com.example.geopagos.utils.BundleKeys
 import com.example.geopagos.viewmodel.InstallmentsViewModel
-import kotlinx.android.synthetic.main.fragment_resume.*
 
 
 /**

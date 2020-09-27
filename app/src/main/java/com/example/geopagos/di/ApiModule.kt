@@ -1,6 +1,6 @@
 package com.example.geopagos.di
 
-import com.example.geopagos.ApiService
+import com.example.geopagos.api.ApiService
 import com.example.geopagos.BuildConfig
 import com.example.geopagos.api.NetworkApiService
 import com.facebook.stetho.okhttp3.StethoInterceptor
@@ -30,7 +30,7 @@ class ApiModule {
     }
 
     @Provides
-    fun providePaymentMethod() : ApiService{
+    fun providePaymentMethod() : ApiService {
         return ApiService()
     }
 

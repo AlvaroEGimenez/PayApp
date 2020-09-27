@@ -2,7 +2,7 @@ package com.example.geopagos.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.geopagos.ApiService
+import com.example.geopagos.api.ApiService
 import com.example.geopagos.di.DaggerApiComponent
 import com.example.geopagos.model.Installments
 import io.reactivex.android.schedulers.AndroidSchedulers

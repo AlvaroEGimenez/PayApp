@@ -1,4 +1,4 @@
-package com.example.geopagos.adapter
+package com.example.geopagos.ui.resume.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -18,7 +18,9 @@ class InstallmentAdapter(private val list: ArrayList<PayerCosts>, private val li
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstallmentsViewHolder {
         val view =
             LayoutInflater.from(parent.context).inflate(R.layout.installments_item, parent, false)
-        return InstallmentsViewHolder(view)
+        return InstallmentsViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int {

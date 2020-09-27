@@ -6,7 +6,7 @@
     app:startDestination="@id/main">
 
     <fragment android:id="@+id/main"
-        android:name="com.example.geopagos.ui.MainFragment"
+        android:name="com.example.geopagos.ui.amount.AmountFragment"
         android:label="Main"
         tools:layout="@layout/fragment_main">
         <action
@@ -16,7 +16,7 @@
 
 
     <fragment android:id="@+id/card_fragment"
-        android:name="com.example.geopagos.ui.CardFragment"
+        android:name="com.example.geopagos.ui.card.CardFragment"
         android:label="Cards"
         tools:layout="@layout/fragment_card">
         <action
@@ -28,7 +28,7 @@
     </fragment>
 
     <fragment android:id="@+id/bank_fragment"
-        android:name="com.example.geopagos.ui.BankFragment"
+        android:name="com.example.geopagos.ui.bank.BankFragment"
         android:label="Bank"
         tools:layout="@layout/fragment_bank">
         <action
@@ -40,7 +40,7 @@
     </fragment>
 
     <fragment android:id="@+id/resume_fragment"
-        android:name="com.example.geopagos.ui.ResumeFragment"
+        android:name="com.example.geopagos.ui.resume.ResumeFragment"
         android:label="Resume"
         tools:layout="@layout/fragment_resume">
         <action
@@ -51,9 +51,17 @@
     </fragment>
 
     <fragment android:id="@+id/checkout_fragment"
-        android:name="com.example.geopagos.ui.CheckoutFragment"
+        android:name="com.example.geopagos.ui.checkout.CheckoutFragment"
         tools:label="Checkout"
-        tools:layout="@layout/fragment_checkout"/>
+        tools:layout="@layout/fragment_checkout">
+        <action
+            android:id="@+id/action_checkout_fragment_to_main"
+            app:destination="@id/main"
+            app:popUpToInclusive="true"
+            app:popEnterAnim="@anim/left_in"
+            app:popExitAnim="@anim/left_out"
+            app:popUpTo="@id/main"/>
+    </fragment>
 
 
 </navigation>

@@ -1,9 +1,9 @@
 package com.example.geopagos.di
 
 import com.example.geopagos.api.ApiService
-import com.example.geopagos.viewmodel.CardsViewModel
-import com.example.geopagos.viewmodel.InstallmentsViewModel
-import com.example.geopagos.viewmodel.PaymentMethodViewModel
+import com.example.geopagos.ui.bank.viewmodel.PaymentMethodViewModel
+import com.example.geopagos.ui.card.viewmodel.CardsViewModel
+import com.example.geopagos.ui.resume.viewmodel.InstallmentsViewModel
 import dagger.Component
 
 @Component(modules = [ApiModule::class])

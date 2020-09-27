@@ -1,4 +1,4 @@
-package com.example.geopagos.viewmodel
+package com.example.geopagos.ui.card.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -40,7 +40,6 @@ class CardsViewModel : ViewModel() {
                     cards.value = value
                     loading.value = false
                 }
-
                 override fun onError(e: Throwable?) {
                     error.value = true
                     loading.value = false

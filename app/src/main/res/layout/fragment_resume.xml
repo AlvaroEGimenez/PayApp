@@ -4,14 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.ResumeFragment"
+    tools:context=".ui.resume.ResumeFragment"
     android:background="#D1D7E4">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_resume"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@android:color/white"
+        app:title="Cuotas"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_resume"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/btn_confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -25,26 +36,31 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_margin="6dp"
+        android:layout_marginStart="16dp"
+
+        android:layout_marginEnd="16dp"
         android:elevation="6dp"
         app:cardCornerRadius="6dp"
-
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_resume">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#99B6BAE1">
+            android:background="@drawable/gradient">
 
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:text="@string/monto"
-                android:textStyle="bold"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_dimen_large"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,9 +70,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
-                android:textStyle="bold"
-                android:textSize="@dimen/text_dimen_large"
+                android:layout_marginBottom="8dp"
                 android:text="@string/tarjeta"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_dimen_large"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/textView9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
@@ -65,19 +84,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginBottom="16dp"
                 android:text="@string/banco"
-                android:textStyle="bold"
+                android:textColor="@android:color/white"
                 android:textSize="@dimen/text_dimen_large"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
             <TextView
                 android:id="@+id/tv_resume_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="16dp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_dimen_large"
                 android:textStyle="bold"
@@ -89,27 +109,29 @@
                 android:id="@+id/tv_resume_card"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                tools:text="VISA"
-                android:textStyle="bold"
+                android:layout_marginBottom="8dp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_dimen_large"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@+id/tv_resume_bank"
                 app:layout_constraintStart_toEndOf="@+id/textView8"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_resume_amount"
+                tools:text="VISA" />
 
             <TextView
                 android:id="@+id/tv_resume_bank"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginTop="8dp"
-                tools:text="ICBC"
-                android:textStyle="bold"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="16dp"
                 android:textColor="@android:color/black"
                 android:textSize="@dimen/text_dimen_large"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/textView9"
-                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                tools:text="ICBC" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -121,10 +143,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
         android:text="@string/selecionar_cuotas"
+        android:textColor="@android:color/black"
         android:textSize="@dimen/text_dimen_large"
         android:textStyle="bold"
-        android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline4" />
 
@@ -144,6 +167,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.3" />
+
+    <ProgressBar
+        android:id="@+id/progressBar_resume"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar_resume" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

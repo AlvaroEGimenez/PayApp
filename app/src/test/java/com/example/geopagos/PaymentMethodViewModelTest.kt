@@ -3,7 +3,7 @@ package com.example.geopagos
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.example.geopagos.api.ApiService
 import com.example.geopagos.model.PaymentsMethod
-import com.example.geopagos.viewmodel.PaymentMethodViewModel
+import com.example.geopagos.ui.bank.viewmodel.PaymentMethodViewModel
 import io.reactivex.Scheduler
 import io.reactivex.Single
 import io.reactivex.android.plugins.RxAndroidPlugins
@@ -33,23 +33,24 @@ class PaymentMethodViewModelTest {
     lateinit var apiService: ApiService
 
     @InjectMocks
-    var paymentMethodViewModel = PaymentMethodViewModel()
+    var paymentMethodViewModel =
+        PaymentMethodViewModel()
 
     private var testSingle : Single<ArrayList<PaymentsMethod>>? = null
 
 
     @Test
     fun successResponse(){
-        val paymentsMethod = PaymentsMethod("","","","",""
-        ,"","", arrayListOf())
+        val paymentsMethod = PaymentsMethod()
         val list = arrayListOf(paymentsMethod)
+        val expected = 1
 
         testSingle = Single.just(list)
 
         `when`(apiService.getPaymentMethod()).thenReturn(testSingle)
         paymentMethodViewModel.getPaymentMethod()
 
-        Assert.assertEquals(1,paymentMethodViewModel.paymentsMethod.value?.size)
+        Assert.assertEquals(expected,paymentMethodViewModel.paymentsMethod.value?.size)
         Assert.assertEquals(false,paymentMethodViewModel.loading.value)
         Assert.assertEquals(null, paymentMethodViewModel.error.value)
 

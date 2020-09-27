@@ -1,10 +1,10 @@
-package com.example.geopagos.viewmodel
+package com.example.geopagos.ui.bank.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.geopagos.api.ApiService
-import com.example.geopagos.model.PaymentsMethod
 import com.example.geopagos.di.DaggerApiComponent
+import com.example.geopagos.model.PaymentsMethod
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver

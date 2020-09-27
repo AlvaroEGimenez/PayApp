@@ -4,21 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.CardFragment">
+    tools:context=".ui.card.CardFragment">
 
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_card"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="@color/colorAccent"
+        android:background="@color/colorPrimary"
+        app:titleTextColor="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerview_payment_methods"
+        android:id="@+id/recyclerview_card"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:visibility="invisible"
@@ -31,7 +32,7 @@
     </androidx.recyclerview.widget.RecyclerView>
 
     <ProgressBar
-        android:id="@+id/progressBar"
+        android:id="@+id/progressBar_card"
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

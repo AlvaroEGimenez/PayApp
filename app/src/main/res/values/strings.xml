@@ -1,11 +1,11 @@
 <resources>
-    <string name="app_name">GeoPagos</string>
+    <string name="app_name">PaymentApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="_0_00">$0.00</string>
     <string name="continuar">continuar</string>
     <string name="monto">Monto</string>
-    <string name="monto_allcap">MONTO</string>
+    <string name="monto_allcap">INGRESE EL MONTO \n DE LA COMPRA</string>
     <string name="acreditacion">Acreditacion</string>
     <string name="estado">Estado</string>
     <string name="select_bank">Seleccionar Banco</string>
@@ -14,4 +14,9 @@
     <string name="selecionar_cuotas">Selecionar cuotas</string>
     <string name="confirmar">Confirmar</string>
     <string name="banco">Banco</string>
+    <string name="error_message">Ocurrio un error</string>
+    <string name="error_installmetns">\"Error al calcular las cuotas \"</string>
+    <string name="bank_not_found">No se encontro banco para la tarjeta</string>
+    <string name="pago_realizado">Pago Realizado</string>
+    <string name="ok">OK</string>
 </resources>

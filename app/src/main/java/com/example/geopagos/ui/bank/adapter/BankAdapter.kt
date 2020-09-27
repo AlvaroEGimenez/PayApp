@@ -1,4 +1,4 @@
-package com.example.geopagos.adapter
+package com.example.geopagos.ui.bank.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,13 +8,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.geopagos.R
 import com.example.geopagos.model.CardIssuers
-import kotlinx.android.synthetic.main.bank_item.view.*
 
 class BankAdapter (private val list : ArrayList<CardIssuers>, val lister : (CardIssuers) -> Unit):RecyclerView.Adapter<BankAdapter.BankViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BankViewHolder {
        val view = LayoutInflater.from(parent.context).inflate(R.layout.bank_item, parent, false)
-        return  BankViewHolder(view)
+        return BankViewHolder(
+            view
+        )
     }
 
     override fun getItemCount(): Int {

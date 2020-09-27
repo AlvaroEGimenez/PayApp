@@ -1,6 +1,6 @@
-package com.example.geopagos.utils
+package com.example.geopagos.model
 
-class BundleKeys {
+class PayDataKey {
 
     companion object {
         const val KEY_AMOUNT = "amount"

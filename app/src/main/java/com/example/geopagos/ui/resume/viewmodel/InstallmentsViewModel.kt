@@ -1,4 +1,4 @@
-package com.example.geopagos.viewmodel
+package com.example.geopagos.ui.resume.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

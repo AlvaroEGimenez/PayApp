@@ -1,4 +1,4 @@
-package com.example.geopagos.adapter
+package com.example.geopagos.ui.card.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -27,7 +27,9 @@ class PaymentMethodsAdapter (private val list : ArrayList<PaymentsMethod>, val l
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PaymentMethodsViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.card_item, parent, false)
-        return PaymentMethodsViewHolder(view)
+        return PaymentMethodsViewHolder(
+            view
+        )
     }
 
 

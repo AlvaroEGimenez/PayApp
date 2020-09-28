@@ -9,7 +9,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.geopagos.R
+import com.example.geopagos.utils.invisible
+import com.example.geopagos.utils.visible
 import kotlinx.android.synthetic.main.fragment_checkout.*
+import kotlin.random.Random
 
 
 /**
@@ -28,15 +31,24 @@ class CheckoutFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val run = Runnable {
-            progressBar_checkout.visibility = View.GONE
-            checkout.visibility = View.VISIBLE
+        val success = Random.nextBoolean()
+        if (success) {
             checkout.setAnimation("payment-success.json")
-            checkout.playAnimation()
-            tv_success_payment.visibility = View.VISIBLE
-            btn_finish.visibility = View.VISIBLE
+            tv_success_payment.text = getString(R.string.pago_realizado)
+        } else {
+            checkout.setAnimation("payment-failed.json")
+            tv_success_payment.text = getString(R.string.error_message)
         }
-        Handler(Looper.getMainLooper()).postDelayed(run,2500)
+
+        val run = Runnable {
+            progressBar_checkout.invisible()
+            checkout.visible()
+            tv_success_payment.visible()
+            btn_finish.visible()
+            checkout.playAnimation()
+            btn_finish.visible()
+        }
+        Handler(Looper.getMainLooper()).postDelayed(run, 2500)
 
         btn_finish.setOnClickListener {
             findNavController().navigate(R.id.action_checkout_fragment_to_main)

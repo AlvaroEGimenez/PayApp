@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -18,6 +17,9 @@ import com.example.geopagos.model.CardIssuers
 import com.example.geopagos.model.PayDataKey
 import com.example.geopagos.ui.bank.adapter.BankAdapter
 import com.example.geopagos.ui.card.viewmodel.CardsViewModel
+import com.example.geopagos.utils.invisible
+import com.example.geopagos.utils.toastShort
+import com.example.geopagos.utils.visible
 import kotlinx.android.synthetic.main.fragment_bank.*
 import java.io.Serializable
 
@@ -35,7 +37,6 @@ class BankFragment : Fragment() {
     private lateinit var amount: String
     private lateinit var card: String
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +45,6 @@ class BankFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_bank, container, false)
 
         cardsViewModel = ViewModelProvider(this).get(CardsViewModel::class.java)
-
 
         arguments.let {
             amount = arguments?.getString(PayDataKey.KEY_AMOUNT).toString()
@@ -66,29 +66,26 @@ class BankFragment : Fragment() {
 
     private fun observeCardViewModel() {
         cardsViewModel.cards.observe(viewLifecycleOwner, Observer { list ->
-            if (list != null && list.size > 0) {
+            if (list != null && list.size > 0)
                 initRecyclerview(list)
-            }else{
-                Toast.makeText(context, "${getString(R.string.bank_not_found)} $card", Toast.LENGTH_SHORT).show()
-            }
-
+            else
+                context?.toastShort("${getString(R.string.bank_not_found)} $card")
         })
         cardsViewModel.loading.observe(viewLifecycleOwner, Observer {
             if (!it) {
-                progressBar_bank.visibility = View.GONE
+                progressBar_bank.invisible()
             }
         })
 
         cardsViewModel.error.observe(viewLifecycleOwner, Observer {
-            if (it) {
-                Toast.makeText(context, getString(R.string.error_message), Toast.LENGTH_SHORT).show()
-            }
+            if (it)
+                context?.toastShort(getString(R.string.error_message))
         })
     }
 
     private fun initRecyclerview(list: ArrayList<CardIssuers>) {
+        recyclerView_bank.visible()
         recyclerView_bank.apply {
-            visibility = View.VISIBLE
             layoutManager = GridLayoutManager(
                 context, 3,
                 GridLayoutManager.VERTICAL, false
@@ -119,10 +116,11 @@ class BankFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home){
+        if (item.itemId == android.R.id.home) {
             activity?.onBackPressed()
         }
         return true
     }
+
 }
 

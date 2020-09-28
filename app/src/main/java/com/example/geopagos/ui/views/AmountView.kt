@@ -9,8 +9,9 @@ import android.widget.LinearLayout
 import com.example.geopagos.R
 import kotlinx.android.synthetic.main.amount_input.view.*
 import java.text.NumberFormat
+import java.util.*
 
-class AmountView  @JvmOverloads constructor(
+class AmountView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -20,14 +21,15 @@ class AmountView  @JvmOverloads constructor(
     init {
         View.inflate(context, R.layout.amount_input, this)
     }
-   fun setInputCallback(inputCallback: InputCallback){
-       callback = inputCallback
-   }
 
-    fun setInputHandler(){
+    fun setInputCallback(inputCallback: InputCallback) {
+        callback = inputCallback
+    }
+
+    fun setInputHandler() {
         textinput_amount.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                if (s.toString() == "$0.0"){
+                if (s.toString() == "$0.0") {
                     callback.onInputEmpty()
                 }
 
@@ -44,7 +46,9 @@ class AmountView  @JvmOverloads constructor(
                     textinput_amount.removeTextChangedListener(this)
                     val cleanString = s.toString().replace("[$,.]".toRegex(), "").trim()
                     val parsed = cleanString.toDouble()
-                    val formatted = NumberFormat.getCurrencyInstance().format((parsed / 100))
+                    val numberFormat = NumberFormat.getCurrencyInstance()
+                    numberFormat.currency = Currency.getInstance(Locale.getDefault())
+                    val formatted = numberFormat.format((parsed / 100))
 
                     textinput_amount.setText(formatted)
                     textinput_amount.setSelection(formatted.length)
@@ -57,9 +61,9 @@ class AmountView  @JvmOverloads constructor(
         })
     }
 
-    interface InputCallback{
+    interface InputCallback {
         fun onInputEmpty()
-        fun onInputValid(amount : String)
+        fun onInputValid(amount: String)
     }
 
 

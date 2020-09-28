@@ -25,7 +25,11 @@ class ApiService {
         return api.cardIssuers(BuildConfig.KEY, id)
     }
 
-    fun getInstallments(amount: String, bin: String, issuerId: String): Single<ArrayList<Installments>> {
+    fun getInstallments(
+        amount: String,
+        bin: String,
+        issuerId: String
+    ): Single<ArrayList<Installments>> {
         return api.installments(BuildConfig.KEY, amount, bin, issuerId)
     }
 }

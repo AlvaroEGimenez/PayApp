@@ -48,5 +48,6 @@ class PaymentMethodsAdapter (private val list : ArrayList<PaymentsMethod>, val l
             tvCardType.text = paymentMethod.payment_type_id
             tvStatus.text = paymentMethod.status
         }
+
     }
 }

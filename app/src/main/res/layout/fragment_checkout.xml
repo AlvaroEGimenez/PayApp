@@ -6,7 +6,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.checkout.CheckoutFragment">
 
-
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/checkout"
         android:layout_width="0dp"
@@ -19,8 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/guideline3"
-        app:lottie_fileName="payment-success.json"
-        app:lottie_loop="true"
+        app:lottie_loop="false"
         android:visibility="invisible"/>
 
     <androidx.constraintlayout.widget.Guideline

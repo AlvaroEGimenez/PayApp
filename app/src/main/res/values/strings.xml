@@ -19,4 +19,6 @@
     <string name="bank_not_found">No se encontro banco para la tarjeta</string>
     <string name="pago_realizado">Pago Realizado</string>
     <string name="ok">OK</string>
+    <string name="total_installments">cuotas de</string>
+    <string name="interes">interes</string>
 </resources>

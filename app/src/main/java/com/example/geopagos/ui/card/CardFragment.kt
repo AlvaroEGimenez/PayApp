@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -18,12 +17,14 @@ import com.example.geopagos.model.PayDataKey
 import com.example.geopagos.model.PaymentsMethod
 import com.example.geopagos.ui.bank.viewmodel.PaymentMethodViewModel
 import com.example.geopagos.ui.card.adapter.PaymentMethodsAdapter
+import com.example.geopagos.utils.toastShort
+import com.example.geopagos.utils.visible
 import kotlinx.android.synthetic.main.fragment_card.*
 
 
 class CardFragment : Fragment() {
 
-    lateinit var paymentMethodViewModel: PaymentMethodViewModel
+    private lateinit var paymentMethodViewModel: PaymentMethodViewModel
     private lateinit var amount: String
 
     override fun onCreateView(
@@ -54,15 +55,15 @@ class CardFragment : Fragment() {
         (activity as AppCompatActivity).setSupportActionBar(toolbar_card)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowHomeEnabled(true)
-        (activity as AppCompatActivity).supportActionBar?.title = "${getString(R.string.monto)} $amount"
+        (activity as AppCompatActivity).supportActionBar?.title =
+            "${getString(R.string.monto)} $amount"
         setHasOptionsMenu(true)
     }
 
     private fun observePaymentMethod() {
         paymentMethodViewModel.paymentsMethod.observe(viewLifecycleOwner, Observer { arrayList ->
-            if (arrayList != null) {
+            if (arrayList != null)
                 initRecyclerview(arrayList)
-            }
         })
 
         paymentMethodViewModel.loading.observe(viewLifecycleOwner, Observer {
@@ -72,14 +73,13 @@ class CardFragment : Fragment() {
 
         paymentMethodViewModel.error.observe(viewLifecycleOwner, Observer {
             if (!it)
-                Toast.makeText(context, getString(R.string.error_message), Toast.LENGTH_SHORT).show()
-
+                context?.toastShort(getString(R.string.error_message))
         })
     }
 
     private fun initRecyclerview(arrayList: ArrayList<PaymentsMethod>) {
+        recyclerview_card.visible()
         recyclerview_card.apply {
-            visibility = View.VISIBLE
             layoutManager = LinearLayoutManager(context)
             adapter =
                 PaymentMethodsAdapter(
@@ -103,10 +103,11 @@ class CardFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == android.R.id.home) {
+        if (item.itemId == android.R.id.home)
             activity?.onBackPressed()
-        }
+
         return true
     }
+
 
 }

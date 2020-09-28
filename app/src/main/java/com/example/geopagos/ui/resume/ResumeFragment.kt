@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -18,6 +17,8 @@ import com.example.geopagos.model.Installments
 import com.example.geopagos.model.PayDataKey
 import com.example.geopagos.ui.resume.adapter.InstallmentAdapter
 import com.example.geopagos.ui.resume.viewmodel.InstallmentsViewModel
+import com.example.geopagos.utils.invisible
+import com.example.geopagos.utils.toastShort
 import kotlinx.android.synthetic.main.fragment_resume.*
 
 
@@ -42,19 +43,17 @@ class ResumeFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_resume, container, false)
 
-        var amount: String
-
         arguments.let {
             cardIssuers = arguments?.getSerializable(PayDataKey.KEY_ISSUER)!! as CardIssuers
             id = arguments?.getString(PayDataKey.KEY_ID).toString()
-            amountRaw = arguments?.getString(PayDataKey.KEY_AMOUNT).toString()
             card = arguments?.getString(PayDataKey.KEY_CARD_NAME)!!
-            amount = amountRaw.replace(",", "").replace("$", "")
+            amountRaw = arguments?.getString(PayDataKey.KEY_AMOUNT).toString()
         }
 
         installmentsViewModel = ViewModelProvider(this).get(InstallmentsViewModel::class.java)
-        installmentsViewModel.getInstallments(amount, id, cardIssuers.id.toString())
+        installmentsViewModel.getInstallments(cleanAmount(amountRaw), id, cardIssuers.id.toString())
         observeInstallments()
+
         return view
     }
 
@@ -68,7 +67,6 @@ class ResumeFragment : Fragment() {
         }
     }
 
-
     private fun setupToolbar() {
         (activity as AppCompatActivity).setSupportActionBar(toolbar_resume)
         (activity as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -78,18 +76,20 @@ class ResumeFragment : Fragment() {
 
     private fun observeInstallments() {
         installmentsViewModel.data.observe(viewLifecycleOwner, Observer {
-            if (it != null && it.size > 0) {
+            if (it != null && it.size > 0)
                 initRecyclerview(it)
-
-            } else {
-                Toast.makeText(context, getString(R.string.error_installmetns), Toast.LENGTH_SHORT)
-                    .show()
-            }
+            else
+                context?.toastShort(getString(R.string.error_installmetns))
         })
 
         installmentsViewModel.loaging.observe(viewLifecycleOwner, Observer {
             if (!it)
-                progressBar_resume.visibility = View.GONE
+                progressBar_resume.invisible()
+        })
+
+        installmentsViewModel.error.observe(viewLifecycleOwner, Observer {
+            if (it)
+                context?.toastShort(getString(R.string.error_message))
         })
     }
 
@@ -103,11 +103,21 @@ class ResumeFragment : Fragment() {
         }
     }
 
+    private fun cleanAmount(amount: String): String {
+        var clean = amount.replace("$", "").trim()
+        val cut = clean.substringAfter(",")
+        clean = if (cut == "00")
+            clean.substringBefore(",").replace(".", "")
+        else
+            clean.replace(".", "").replace(",", ".")
+
+        return clean
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId == android.R.id.home)
             activity?.onBackPressed()
 
         return true
     }
-
 }

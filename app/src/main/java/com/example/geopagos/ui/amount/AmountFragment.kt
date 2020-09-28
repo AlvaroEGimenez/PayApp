@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
  * Use the [AmountFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class AmountFragment : Fragment(), AmountView.InputCallback{
+class AmountFragment : Fragment(), AmountView.InputCallback {
 
     private lateinit var amount: String
 
@@ -40,16 +40,12 @@ class AmountFragment : Fragment(), AmountView.InputCallback{
     }
 
     override fun onInputEmpty() {
-       btn_next.isEnabled = false
+        btn_next.isEnabled = false
     }
 
     override fun onInputValid(amount: String) {
         btn_next.isEnabled = true
         this.amount = amount
-    }
-
-    companion object {
-        fun newInstance() = AmountFragment()
     }
 
 }

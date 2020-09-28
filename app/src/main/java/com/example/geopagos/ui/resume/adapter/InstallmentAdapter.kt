@@ -1,6 +1,5 @@
 package com.example.geopagos.ui.resume.adapter
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +8,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.geopagos.R
 import com.example.geopagos.model.PayerCosts
+import java.text.NumberFormat
+import java.util.*
 
-class InstallmentAdapter(private val list: ArrayList<PayerCosts>, private val listener : (PayerCosts) -> Unit) :
+class InstallmentAdapter(
+    private val list: ArrayList<PayerCosts>,
+    private val listener: (PayerCosts) -> Unit
+) :
     RecyclerView.Adapter<InstallmentAdapter.InstallmentsViewHolder>() {
 
     private var lastChecked: RadioButton? = null
@@ -50,15 +54,22 @@ class InstallmentAdapter(private val list: ArrayList<PayerCosts>, private val li
         private val tvRecommendedMessage: TextView =
             itemView.findViewById(R.id.tv_recommended_message)
 
-        @SuppressLint("SetTextI18n")
+
         fun bind(payerCosts: PayerCosts) {
-            tvInstallments.text = "${payerCosts.installments} cuotas de"
-            tvInstallmentsRate.text = "interes ${payerCosts.installment_rate} %"
+            tvInstallments.text =
+                "${payerCosts.installments} ".plus(itemView.context.getString(R.string.total_installments))
+            tvInstallmentsRate.text = itemView.context.getString(R.string.interes).plus("${payerCosts.installment_rate}%")
             tvLabel.text = payerCosts.labels[0]
-            tvInstallmentAmount.text = "$${payerCosts.installment_amount}"
+            tvInstallmentAmount.text = numberFormat(payerCosts.installment_amount)
             tvRecommendedMessage.text = payerCosts.recommended_message
         }
 
+         private fun numberFormat(amount : String) : String{
+            val parsed = amount.toDouble()
+            val numberFormat = NumberFormat.getCurrencyInstance()
+            numberFormat.currency = Currency.getInstance(Locale.getDefault())
+            return numberFormat.format((parsed))
+        }
 
     }
 }
